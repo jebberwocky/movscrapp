@@ -2,3 +2,5 @@ default.ini
 test.txt
 *.log
 *.csv
+/gyqoutput
+/.idea
