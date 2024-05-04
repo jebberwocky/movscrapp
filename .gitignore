@@ -4,3 +4,4 @@ test.txt
 *.csv
 /gyqoutput
 /.idea
+/64output
