@@ -1,10 +1,13 @@
 import json
 from lxml import html, etree
 import re
+import chinese_converter
 
 OUT64 = "./64output"
 html_file_path = "./64.html"
 json_content = []
+json_content_obj = {}
+json_content_obj_trad = {}
 
 def get_next_p(element):
     p = element.getnext()
@@ -39,7 +42,18 @@ if __name__ == '__main__':
                 "x":p3.text_content(),
                 "yy":parse_next_table(p3)
             }
+            key = output["gy"].split("：")[0].strip()
             json_content.append(output)
+            json_content_obj[key] = output
+            tradkey = chinese_converter.to_traditional(key)
+            print(tradkey, " ", key)
+            json_content_obj_trad[tradkey] = output
     with open(OUT64+'/data.json', 'w', encoding='utf-8', ) as outfile:
         # Use json.dump() to write the data to the file
         json.dump(json_content, outfile, ensure_ascii=False)
+    with open(OUT64+'/simp.data.obj.json', 'w', encoding='utf-8', ) as outfile:
+        # Use json.dump() to write the data to the file
+        json.dump(json_content_obj, outfile, ensure_ascii=False)
+    with open(OUT64 + '/trad.data.obj.json', 'w', encoding='utf-8', ) as outfile:
+        # Use json.dump() to write the data to the file
+        json.dump(json_content_obj_trad, outfile, ensure_ascii=False)

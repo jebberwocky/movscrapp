@@ -60,9 +60,10 @@ if __name__ == '__main__':
     #    with open(logfile, 'rb') as content_file:
     #       content = content_file.read()
     #        msg.add_attachment(content, maintype='application', subtype='txt', filename='logfile')
-    with open(csvfile, 'rb') as content_file:
-        content = content_file.read()
-        msg.add_attachment(content, maintype='application', subtype='csv', filename='data.csv')
+    if config["pugua"]["attachment"]:
+        with open(csvfile, 'rb') as content_file:
+            content = content_file.read()
+            msg.add_attachment(content, maintype='application', subtype='csv', filename='data.csv')
     #only sending email in production
     if stage == 'production' and  config['email']['email'] :
         context = ssl.create_default_context()
