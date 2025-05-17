@@ -1,0 +1,6 @@
+configparser
+email
+pathlib
+smtplib
+ssl
+csv

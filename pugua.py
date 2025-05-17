@@ -12,7 +12,7 @@ config.read(str(path)+'/default.ini')
 stage = config['env']['stage']
 debug = config['env']['debug']
 port = 465  # For SSL
-smtp_server = "smtp.gmail.com"
+smtp_server = config['email']['smtp']
 sender_email = config['email']['sender'] # Enter your address
 receiver_email = config['pugua']['to']  # Enter receiver address
 password = config['email']['apppwd']
